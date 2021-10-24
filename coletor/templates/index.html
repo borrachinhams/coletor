@@ -1,0 +1,44 @@
+
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon.png">
+
+<title>Coletor - Tomcat</title>
+<h1>Coletor - Tomcat</h1>
+<p>Sistema de coleta de informações de requisições Tomcat</p>
+
+{% for ip in ips %}
+  <tr>
+      <table border=1 cellspacing=0 cellpadding=3>
+        <tr>
+        <td colspan=7 class=title>{{ip}}</td>
+        </tr>
+        <tr>
+        <td class=header-left><small>Stage</small></td>
+        <td class=header-left><small>Time</small></td>
+        <td class=header-center><small>Sent</small></td>
+        <td class=header-center><small>Recv</small></td>
+        <td class=header-left><small>Client</small></td>
+        <td class=header-left><small>VHost</small></td>
+        <td class=header-left><small>Request</small></td>
+        </tr>
+      <tr>
+
+    {% for dado in dados %}
+      {% if ip == dado.ip %}
+      
+        <tr>
+            <td class=row-left bgcolor=#C3F3C3 rowspan=2><small><a>{{dado.stage}}</a></small></td>
+            <td class=row-left bgcolor=#C3F3C3 rowspan=2><small><i>{{dado.time}}</i></small></td>
+            <td class=row-left bgcolor=#C3F3C3 rowspan=2><small>{{dado.sent}}</small></td>
+            <td class=row-center bgcolor=#C3F3C3 rowspan=2><small>{{dado.recv}}</small></td>
+            <td class=row-center bgcolor=#C3F3C3 rowspan=2><small><a>{{dado.client}}</a></small></td>
+            <td class=row-left bgcolor=#C3F3C3 rowspan=2><small>{{dado.vhost}}</small></td>
+            <td class=row-left bgcolor=#C3F3C3 rowspan=2><small>{{dado.request}}</small></td>
+        </tr>
+        </tr><tr>
+      
+       {% endif %}
+     {% endfor %}
+
+  <br>
+{% endfor %}
